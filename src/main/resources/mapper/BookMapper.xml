@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kyle.mapper.BookMapper">
-
-    <select id="selectBookAid" resultType="com.kyle.domain.Book" parameterType="Integer">
+    <select id="selectBookAid" resultType="com.kyle.domain.Book">
         select * from book where aid = #{aid}
     </select>
 </mapper>

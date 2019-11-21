@@ -1,7 +1,6 @@
 package com.kyle.controller;
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.exceptions.ClientException;
-import com.kyle.config.ShiroConfig;
 import com.kyle.config.TelUtils;
 import com.kyle.dao.AuthorRespository;
 import com.kyle.domain.Author;
@@ -10,10 +9,8 @@ import com.kyle.service.AuthorService;
 import com.kyle.service.CdcodeService;
 
 import com.kyle.shiro.CustomizedToken;
-import com.kyle.utils.Md5Utils;
 import com.kyle.utils.UploadUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +59,9 @@ public class LoginAndRegisterController {
     public String login(@RequestBody Author author, HttpSession session){
         //String name= author.getAname();
         String password=author.getApassword();
+        
         String aphone = author.getAphone();
+        System.out.println(password+"++++++"+aphone);
         Subject subject = SecurityUtils.getSubject();
 
         CustomizedToken token = new CustomizedToken(aphone, password,"");
@@ -74,7 +73,7 @@ public class LoginAndRegisterController {
                 Integer astatus = checkauthor.getAstatus();
                 if (astatus==1){
                     session.setAttribute("author",checkauthor);
-                    redisTemplate.opsForValue().set("author",checkauthor);
+//                    redisTemplate.opsForValue().set("author",checkauthor);
                     return "success";
                 }
             }
@@ -110,14 +109,14 @@ public class LoginAndRegisterController {
        if (author.getMsgcode().equals(byName.getMsgcode())&&authorRespository.findByAname(author.getAname())==null){
            author.setAstatus(1);
            authorService.save(author);
-           return "{\"aa\":\"注册成功\",\"bb\":\"login\"}";
+           return "注册成功";
           /* if(authorService.selectbyTel(author.getAphone())==null) {
 
                author.setAstatus(1);//将用户信息存入数据库
                authorService.save(author);
                return "{\"aa\":\"注册成功\",\"bb\":\"login\"}";*/
            }
-       return "{\"aa\":\"用户名已被注册或验证码错误\"}";
+       return "用户名已被注册或验证码错误";
    }
     @RequestMapping("/findRedis")
     public Author findSession(){

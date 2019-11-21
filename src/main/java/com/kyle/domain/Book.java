@@ -2,11 +2,13 @@ package com.kyle.domain;
 
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-
+@Data
 @Entity
 @Table(name = "book")
 public class Book implements Serializable {
@@ -28,120 +30,9 @@ public class Book implements Serializable {
     private Integer scount;
 
     private String bpic;
-
+    private Integer btickets;
     private BigDecimal bprice;
+    private Integer bstatus;
     private String time;
 
-//    private Integer btickets;
-
-
-    private static final long serialVersionUID = 1L;
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public BigDecimal getBprice() {
-        return bprice;
-    }
-
-    public void setBprice(BigDecimal bprice) {
-        this.bprice = bprice;
-    }
-
-//    public Integer getBtickets() {
-//        return btickets;
-//    }
-//
-//    public void setBtickets(Integer btickets) {
-//        this.btickets = btickets;
-//    }
-
-    public Integer getBid() {
-        return bid;
-    }
-
-    public void setBid(Integer bid) {
-        this.bid = bid;
-    }
-
-    public Integer getCid() {
-        return cid;
-    }
-
-    public void setCid(Integer cid) {
-        this.cid = cid;
-    }
-
-    public Integer getAid() {
-        return aid;
-    }
-
-    public void setAid(Integer aid) {
-        this.aid = aid;
-    }
-
-    public String getBname() {
-        return bname;
-    }
-
-    public void setBname(String bname) {
-        this.bname = bname == null ? null : bname.trim();
-    }
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
-    }
-
-    public BigDecimal getNummoney() {
-        return nummoney;
-    }
-
-    public void setNummoney(BigDecimal nummoney) {
-        this.nummoney = nummoney;
-    }
-
-    public Integer getScount() {
-        return scount;
-    }
-
-    public void setScount(Integer scount) {
-        this.scount = scount;
-    }
-
-    public String getBpic() {
-        return bpic;
-    }
-
-    public void setBpic(String bpic) {
-        this.bpic = bpic == null ? null : bpic.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bid=" + bid +
-                ", cid=" + cid +
-                ", aid=" + aid +
-                ", bname='" + bname + '\'' +
-                ", introduce='" + introduce + '\'' +
-                ", nummoney=" + nummoney +
-                ", scount=" + scount +
-                ", bpic='" + bpic + '\'' +
-                ", bprice=" + bprice +
-                ", time='" + time + '\'' +
-                '}';
-    }
 }
